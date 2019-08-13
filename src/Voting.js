@@ -5,6 +5,7 @@ import Menu from "./Menu";
 import skylogo from "./images/skylogo.png"
 import {Button, Checkbox, Form, Icon, Input, message, Slider, Switch} from 'antd';
 import 'antd/dist/antd.css';
+import {Link} from "react-router-dom";
 class Voting extends React.Component {
     constructor(props){
       super(props);
@@ -122,7 +123,7 @@ class Voting extends React.Component {
       return(
         <div>
           <div style={styles.container}>
-            <Button color='primary' className='float-right' style={styles.logout}>Log Out</Button>
+            <Link to="/"><Button color='primary' className='float-right' style={styles.logout}>Log Out</Button></Link>
             <MenuButton open={this.state.menuOpen} onClick={()=>this.handleMenuClick()} color='white'/>
             <div style={styles.logo}><img className="skylogo-nav" src={skylogo} alt="skylogo" width="50"/></div>
           </div>

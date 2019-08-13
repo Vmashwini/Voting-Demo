@@ -2,12 +2,13 @@ import React from "react";
 import PinInput from "react-pin-input";
 import "./App.css";
 import skylogo from "./images/skylogo.png"
-
+import {Redirect} from 'react-router-dom';
 class App extends React.PureComponent {
   constructor(props){
     super(props);
     this.state = {
       value: "",
+      signin: false,
       //password: [1,2,3,4],
       //confirmed: false
     };
@@ -30,16 +31,17 @@ class App extends React.PureComponent {
     if(this.state.value === '1234')
     {
       this.onSuccess();
+      window.location.href = "/moduleOne"
     }
     else{
       this.onFailure();
     }
   }
   onSuccess = () => {
-    alert('yessssss')
+    alert('You have successfully logged in!')
   }
   onFailure = () => {
-    alert("noooo")
+    alert("Access Denied! Please try again")
   }
   render() {
     const { value } = this.state;
