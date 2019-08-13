@@ -6,12 +6,15 @@ import skylogo from "./images/skylogo.png"
 import {Button, Checkbox, Form, Icon, Input, message, Slider, Switch} from 'antd';
 import 'antd/dist/antd.css';
 import {Link} from "react-router-dom";
+import {Camera} from "./camera/Camera";
+
 class Voting extends React.Component {
     constructor(props){
       super(props);
       this.state={
         menuOpen:false,
-        hover: false
+        hover: false,
+        image: false,
       }
     }
     
@@ -24,6 +27,10 @@ class Voting extends React.Component {
     }
     handleHover(){
         this.setState({hover:!this.state.hover});
+    }
+    onCapture() {
+        this.setState({image: true})
+        console.log(this.state.image)
     }
     render(){
       const styles= 
@@ -87,19 +94,31 @@ class Voting extends React.Component {
             animation: '0.5s shrink forwards',
             animationDelay:this.props.delay,
             
+          },
+          camera: {
+            height: '100vh',
+            top: '60%',   
+            left: '50%',
+            WebkitTransform: 'translate(-50%, -50%)',
+            transform: 'translate(-50%, -50%)',
+            position: 'fixed',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            textAlign: 'center'
+          },
+          CameraPrompt: {
+            marginBottom: 10,
+            textAlign: 'center',
+            fontSize: '25px'
           }
         }
       const menu = ['Module One','Module Two','Module Three']
-      const menuItems = menu.map((val,index)=>{
-        return (
-            console.log(val),
-            <MenuItem 
-                key={index} 
-                delay={`${index * 0.1}s`}
-                onClick={()=>{this.handleLinkClick();}}>{val}</MenuItem>
-            
-        );
-      });
+      const uploadImage = async file => {
+          const Data = new FormData();
+          Data.append('file', file)
+      }
       const Items = menu.map((val, index)=> {
           return(
               <div
@@ -126,11 +145,17 @@ class Voting extends React.Component {
             <Link to="/"><Button color='primary' className='float-right' style={styles.logout}>Log Out</Button></Link>
             <MenuButton open={this.state.menuOpen} onClick={()=>this.handleMenuClick()} color='white'/>
             <div style={styles.logo}><img className="skylogo-nav" src={skylogo} alt="skylogo" width="50"/></div>
-          </div>
-          <Menu open={this.state.menuOpen} style={styles.container2}>
+            </div>
+            <Menu open={this.state.menuOpen} style={styles.container2}>
             {Items}
-          </Menu>
-          
+            </Menu>
+            <div style={styles.camera}>
+                <div style = {styles.CameraPrompt}>Image Capture</div>
+                <Button onClick={()=> {this.onCapture();}}>Start capturing..</Button>
+                <div>
+                    {this.state.image === true ? <Camera sendFile={uploadImage}/> : null}
+                </div>
+            </div>
         </div>
       )
     }
