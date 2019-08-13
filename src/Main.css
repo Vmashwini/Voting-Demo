@@ -1,0 +1,44 @@
+.float-right {
+    float: right !important;
+    left: 50;
+}
+.time_format {
+    float: center !important;
+}
+emoji-slider {
+    --emoji-slider-bar-color: red;
+    --emoji-slider-bar-active-color: green;
+  }
+  .rangeSlider {
+    --emoji-slider-bar-active-color: #e5e5e5;
+  }
+
+  @import url('https://fonts.googleapis.com/css?family=Lobster');
+  @import url('https://fonts.googleapis.com/css?family=Open+Sans');
+  
+  @keyframes appear {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes slideIn {
+    0% {
+      transform: translateX(-2%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes shrink {
+    0% {
+      width: 95%;
+    }
+    100% {
+      width: 90%;
+    }
+  }
