@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "antd": "^3.21.4",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "emoji-mart": "^2.11.1",
     "emoji-slider": "^0.2.0",
     "mdbreact": "^4.19.0",
